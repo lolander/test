@@ -1,0 +1,19 @@
+= form_for @crane, :html => { :class => 'form-horizontal' } do |f|
+  .form-group
+    =f.label :idlable_pic, 'ID-bricka', :class =>'control-lable'
+  =f.file_field :idlable_pic
+  .form-group
+    = f.label :name, 'ID', :class => 'control-label'
+    = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :size, 'Storlek', :class => 'control-label', placeholder: 'ex. 16'
+    = f.number_field :size, :class => 'form-control'
+  .form-group
+    = f.label :brand, 'Tillverkare', :class => 'control-label', placeholder: 'Saab'
+    = f.text_field :brand, :class => 'form-control'
+  .form-group
+    = f.label :year, 'Årsmodell', :class => 'control-label'
+    = f.date_select :year, :class => 'form-control'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), cranes_path, :class => 'btn'

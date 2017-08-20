@@ -1,0 +1,19 @@
+= form_for @vehicle, :html => { :class => 'form-horizontal', :multipart => true } do |f|
+  .form-group
+    = f.label :profile_pic, 'Profilbild', :class => 'control-label'
+    = f.file_field :profile_pic
+  .form-group
+    = f.label :reg_num, 'Reg Nr', :class => 'control-label'
+    = f.text_field :reg_num, :class => 'form-control'
+  .form-group
+    = f.label :model, 'Modell', :class => 'control-label'
+    = f.text_field :model, :class => 'form-control'
+  .form-group
+    = f.label :num_of_axle, 'Antal axlar', :class => 'control-label'
+    = f.number_field :num_of_axle, :class => 'form-control'
+  .form-group
+    = f.label :crane_id, 'Kran', :class => 'control-label'
+    = f.collection_select :crane_id, Crane.all, :id, :name, :prompt => "-"
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), vehicles_path, :class => 'btn'

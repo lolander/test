@@ -1,0 +1,34 @@
+- model_class = Vehicle
+.page-header
+  %h1
+    Fordon
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th
+        Reg Nr
+      %th
+        Modell
+      %th
+        Axlar
+      %th
+        Kran-storlek
+      %th
+        Status
+  %tbody
+    - @vehicles.each do |vehicle|
+      %tr{ data: {link: "#{vehicle_path(vehicle)}"} }
+        %td= vehicle.reg_num
+        %td= vehicle.model
+        %td= vehicle.num_of_axle
+        %td= vehicle.crane_size
+        %td
+          %span.label{class: "label-#{vehicle.status}" }
+            =vehicle.events.not_done.count
+
+%br
+%br
+%br
+
+= link_to 'Ny', new_vehicle_path, :class => 'btn btn-primary'
+= render 'shared/table_js'

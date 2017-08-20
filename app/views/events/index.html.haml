@@ -1,0 +1,53 @@
+- model_class = Event
+.page-header
+  %h1
+    Felanmälan
+
+  .search-container
+    .form-group
+      = #select_tag :vehicle_id, options_for_select(Vehicle.order(:reg_num).map { |v| [v.reg_num, v.id] }, params[:vehicle_id].to_i), onchange: "javascript: filterEventsOnVehicle(this.value);", prompt: 'Fordon'
+
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th
+        &nbsp;
+      %th
+        Rubrik
+      %th
+        Beskrivning
+      %th
+        Prio
+      %th
+        Tillhörande
+      %th
+        Skapad
+      %th
+        Status
+  %tbody
+    - @events.each do |event|
+      %tr{ data: {link: "#{event_path(event)}"}, class: event.status_color }
+        %td
+          - if event.done?
+            %span.glyphicon.glyphicon-ok
+          - else
+            %span.glyphicon.glyphicon-remove
+        %td= event.title
+        %td= event.description
+        %td= event.prio
+        %td= link_to event.vehicle.reg_num, vehicle_path(event.vehicle)
+        %td= event.created_at.to_formatted_s(:short)
+        %td
+          - if event.done?
+            Åtgärdad
+          - else
+            Ej åtgärdad
+
+%br
+%br
+%br
+
+= link_to 'Åtgärdade', events_path(done: true), :class => 'btn btn-primary'
+= link_to 'Ny', new_event_path, :class => 'btn btn-primary'
+= render 'shared/table_js'
+= render 'shared/search_js'

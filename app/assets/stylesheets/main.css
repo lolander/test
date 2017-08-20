@@ -1,0 +1,15 @@
+.page-header {margin: 100px auto 20px;}
+.avatar-container > .thumbnail {
+  width: 300px;
+  height: 200px;
+  margin-bottom: 30px;
+}
+.avatar-container > .thumbnail img {
+  max-height: 195px;
+}
+
+table.table-hover tr:hover {cursor: pointer;}
+
+li.print-link {margin-right: 40px;}
+
+.bright {color: white;}

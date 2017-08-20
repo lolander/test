@@ -1,0 +1,24 @@
+- model_class = User
+.page-header
+  %h1
+    Profil
+
+%p
+  %strong
+    Namn
+  %br
+  = current_user.name
+%p
+  %strong
+    Email
+  %br
+  = current_user.email
+%p
+  %strong
+    Roll
+  %br
+    Admin
+
+%br
+
+= link_to 'Ändra', edit_user_registration_path(current_user), :class => 'btn btn-primary btn-xs'

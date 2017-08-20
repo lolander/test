@@ -1,0 +1,32 @@
+- unless flash.empty?
+  - flash.each do |type, message|
+    :javascript
+      var flashStack = { dir1: "down", dir2: "right", push: "top" };
+
+      $(function() {
+        new PNotify({
+          stack: flashStack,
+          text: "#{message}",
+          type: "#{type}",
+          delay: 4000,
+          animate_speed: "normal",
+          mouse_reset: false,
+          sticker: false,
+          closer: true,
+          shadow: false,
+          opacity: .9
+        });
+      });
+-# old code remnant
+- if @error
+  :javascript
+    $(function() {
+      new PNotify({
+        text: "#{@error}",
+        type: "error"
+         nonblock: {
+          nonblock: true,
+          nonblock_opacity: .2
+        }
+      });
+    });

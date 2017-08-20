@@ -1,0 +1,33 @@
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} VerkstadsAppen
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li= link_to 'Fordon', vehicles_path
+        %li= link_to 'Kranar', cranes_path
+        %li= link_to 'Felanmälningar', events_path
+        %li.dropdown
+      %ul.nav.navbar-nav.navbar-right
+        %li.print-link
+          %a{href: "javascript:print()"}
+            Skriv ut
+            %span{ class: 'glyphicon glyphicon-print' }
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            - if user_signed_in?
+              =current_user.name
+            - else
+              Användare
+
+            %b.caret
+          %ul.dropdown-menu
+            -if user_signed_in?
+              %li= link_to 'Profil', user_path(current_user)
+              %li= link_to 'logga ut', destroy_user_session_path, method: :delete
+            -else
+              %li= link_to 'Logga in', new_user_session_path, method: :get
